@@ -1,6 +1,8 @@
-###Terraform configuration to deploy Vault development server on AWS EC2 instance
+**Terraform configuration to deploy Hashicorp Vault development server on AWS EC2 instance**
 
 NOTE: You need to configure a Key Pair on your AWS console and download *.pem* file
+
+NOTE: Vault dev server runs on port 8200, by default.
 
 **Required Terraform variables**
 
@@ -19,4 +21,3 @@ NOTE: You need to configure a Key Pair on your AWS console and download *.pem* f
 ```
 $ terraform init
 $ terraform apply
-```
