@@ -31,3 +31,5 @@
 NOTE: Hashicorp vault dev server runs on port 8200, by default.
 
 NOTE: If you can't see the Vault Web UI, make sure your default security group are not missconfigured (inbound protocol/ports).
+
+NOTE: When Vault server is started, it shows root and unseal keys. Run `journalctl -u vault.service` on the remote instance to get those keys.
