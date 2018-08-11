@@ -1,10 +1,11 @@
 **Terraform configuration to deploy Hashicorp Vault development server on AWS EC2 instance**
 
-**Instance details**
+**Details**
 
-- AMI: ami-466768ac
-- Type: t2.micro
-- Name: Vault
+- Hashicorp Vault version: 0.10.4
+- Instance AMI: ami-466768ac
+- Instance type: t2.micro
+- Instance name: Vault
 
 **Required Terraform variables**
 
