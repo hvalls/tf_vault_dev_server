@@ -1,9 +1,22 @@
-Terraform configuration to deploy Vault development server on AWS EC2 instance Edit
+###Terraform configuration to deploy Vault development server on AWS EC2 instance
 
-*Required Terraform variables variables*
+NOTE: You need to configure a Key Pair on your AWS console and download *.pem* file
+
+**Required Terraform variables**
 
 - aws_key
 - aws_secret
 - aws_region
 - vault_private_key_file
-- variable "vault_key_name
+- vault_key_name
+
+**Outputs**
+
+- vault_ip
+
+**Usage**
+
+```
+$ terraform init
+$ terraform apply
+```
