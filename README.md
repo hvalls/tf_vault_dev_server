@@ -15,7 +15,7 @@ NOTE: Vault dev server runs on port 8200, by default.
 - aws_key
 - aws_secret
 - aws_region
-- vault_private_key_file
+- vault_private_key_file (host absolute path to *.pem* file)
 - vault_key_name
 
 **Outputs**
