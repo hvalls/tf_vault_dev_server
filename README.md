@@ -28,4 +28,5 @@
 *vault_ip* will be shown. Navigate to http://{vault_ip}:8200/ui and you will see Hashicorp Vault web dashboard.
 
 NOTE: Hashicorp vault dev server runs on port 8200, by default.
+
 NOTE: If you can't see the Vault Web UI, make sure your default security group are not missconfigured (inbound protocol/ports).
