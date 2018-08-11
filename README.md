@@ -25,7 +25,7 @@
 2. initialize working directory with `$ terraform init`
 3. Apply configuration with `$ terraform apply`
 
-*vault_ip* will be shown. Navigate to http://{vault_ip}:8200/ui and you will see Hashicorp Vault web dashboard.
+*vault_ip* will be shown. Navigate to http://{vault_ip}:8200/ui and you will see Hashicorp Vault Web UI.
 
 NOTE: Hashicorp vault dev server runs on port 8200, by default.
 
