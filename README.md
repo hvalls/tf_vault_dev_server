@@ -4,6 +4,12 @@ NOTE: You need to configure a Key Pair on your AWS console and download *.pem* f
 
 NOTE: Vault dev server runs on port 8200, by default.
 
+**Instance details**
+
+- AMI: ami-466768ac
+- Type: t2.micro
+- Name: Vault
+
 **Required Terraform variables**
 
 - aws_key
