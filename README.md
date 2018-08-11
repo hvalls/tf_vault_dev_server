@@ -24,6 +24,6 @@ NOTE: Vault dev server runs on port 8200, by default.
 
 **Usage**
 
-```
-$ terraform init
-$ terraform apply
+1. Create *variables.tf* file with all the required variables (See https://www.terraform.io/docs/configuration/variables.html)
+2. initialize working directory with `$ terraform init`
+3. Apply configuration with `$ terraform apply`
