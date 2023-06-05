@@ -1,48 +1,37 @@
-provider "aws" {
-  access_key = "${var.aws_key}"
-  secret_key = "${var.aws_secret}"
-  region     = "${var.aws_region}"
-}
-
 resource "aws_instance" "vault" {
-  ami           = "ami-466768ac"
-  instance_type = "t2.micro"
-  key_name = "${var.vault_key_name}"
+  ami           = var.aws_instance_ami
+  instance_type = var.aws_instance_type
+  key_name      = var.aws_instance_key_name
 
-  tags {
-    Name = "Vault"
+  tags = {
+    Name = "Vault Server"
+  }
+
+  connection {
+    host        = self.public_ip
+    type        = "ssh"
+    agent       = false
+    user        = var.aws_instance_conn_user
+    private_key = file("${var.aws_instance_conn_priv_key}")
+    timeout     = "10m"
   }
 
   provisioner "file" {
-    connection {
-      type        = "ssh"
-      agent       = false
-      user        = "ec2-user"
-      private_key = "${file("${var.vault_private_key_file}")}"
-      timeout = "10m"
-    }
-    source = "./vault.service"
-    destination = "/home/ec2-user/vault.service"
+    source      = "./vault.service"
+    destination = "/home/${var.aws_instance_conn_user}/vault.service"
   }
 
   provisioner "remote-exec" {
-    connection {
-      type        = "ssh"
-      agent       = false
-      user        = "ec2-user"
-      private_key = "${file("${var.vault_private_key_file}")}"
-      timeout = "10m"
-    }
     inline = [
-      "curl -O https://releases.hashicorp.com/vault/0.10.4/vault_0.10.4_linux_amd64.zip",
-      "unzip vault_0.10.4_linux_amd64.zip",
-      "sudo mv /home/ec2-user/vault.service /etc/systemd/system/",
+      "curl -O https://releases.hashicorp.com/vault/${var.vault_version}/vault_${var.vault_version}_linux_amd64.zip",
+      "unzip vault_${var.vault_version}_linux_amd64.zip",
+      "sudo mv /home/${var.aws_instance_conn_user}/vault.service /etc/systemd/system/",
       "sudo systemctl start vault.service"
     ]
   }
 
 }
 
-output "vault_ip" {
-  value = "${aws_instance.vault.public_ip}"
+output "vault_instance_ip" {
+  value = aws_instance.vault.public_ip
 }
