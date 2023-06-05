@@ -17,7 +17,7 @@ resource "aws_instance" "vault" {
   }
 
   provisioner "file" {
-    source      = templatefile("vault.service", { user : var.aws_instance_user })
+    source      = templatefile("vault.service", { user : var.aws_instance_user, port: var.vault_server_port })
     destination = "/home/${var.aws_instance_user}/vault.service"
   }
 
@@ -30,8 +30,4 @@ resource "aws_instance" "vault" {
     ]
   }
 
-}
-
-output "vault_instance_ip" {
-  value = aws_instance.vault.public_ip
 }
