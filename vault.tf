@@ -11,21 +11,21 @@ resource "aws_instance" "vault" {
     host        = self.public_ip
     type        = "ssh"
     agent       = false
-    user        = var.aws_instance_conn_user
+    user        = var.aws_instance_user
     private_key = file("${var.aws_instance_conn_priv_key}")
     timeout     = "10m"
   }
 
   provisioner "file" {
-    source      = "./vault.service"
-    destination = "/home/${var.aws_instance_conn_user}/vault.service"
+    source      = templatefile("vault.service", { user : var.aws_instance_user })
+    destination = "/home/${var.aws_instance_user}/vault.service"
   }
 
   provisioner "remote-exec" {
     inline = [
       "curl -O https://releases.hashicorp.com/vault/${var.vault_version}/vault_${var.vault_version}_linux_amd64.zip",
       "unzip vault_${var.vault_version}_linux_amd64.zip",
-      "sudo mv /home/${var.aws_instance_conn_user}/vault.service /etc/systemd/system/",
+      "sudo mv /home/${var.aws_instance_user}/vault.service /etc/systemd/system/",
       "sudo systemctl start vault.service"
     ]
   }

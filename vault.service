@@ -3,4 +3,4 @@ Description=Vault dev server
           
 [Service]
 Type=simple
-ExecStart=/home/ec2-user/vault server -dev -dev-listen-address=0.0.0.0:8200 
+ExecStart=/home/${user}/vault server -dev -dev-listen-address=0.0.0.0:8200 
